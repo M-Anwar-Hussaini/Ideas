@@ -1,5 +1,5 @@
-@extends('layouts.layout')
-@section('content')
+@extends("layouts.layout")
+@section("content")
   <div class="row">
     <div class="col-3">
       <div class="card overflow-hidden">
@@ -37,12 +37,13 @@
       </div>
     </div>
     <div class="col-6">
-      @include('partials._error-message')
-      @include('partials._submit-idea')
+      @include("partials._success-message")
+      @include("partials._error-message")
+      @include("partials._submit-idea")
       <hr>
       @foreach ($ideas as $idea)
         <div class="mt-3">
-          @include('partials._idea-card')
+          @include("partials._idea-card")
         </div>
       @endforeach
     </div>

@@ -10,7 +10,7 @@ class IdeaController extends Controller
     public function store(Request $request) {
         $idea = new Idea($request->all());
         if($idea->save()) {
-            return redirect()->route('home')->with('success', 'Successfully created');
+            return redirect()->route('home')->with('success', 'Idea was created successfully');
         }
 
     }
