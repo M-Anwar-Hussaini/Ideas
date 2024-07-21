@@ -17,4 +17,14 @@ class IdeaController extends Controller
         }
 
     }
+
+    public function destroy(Idea $idea) {
+        $idea->delete();
+
+        return redirect()->route('home')->with('success', 'The idea successfully deleted');
+    }
+
+    public function show(Idea $idea) {
+        return view('ideas.show', compact('idea'));
+    }
 }
