@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class IdeaController extends Controller
 {
     public function store(Request $request) {
+        $request->validate([
+            'content'=> ['required', 'min:5', 'max:240']
+        ]);
         $idea = new Idea($request->all());
         if($idea->save()) {
             return redirect()->route('home')->with('success', 'Idea was created successfully');
