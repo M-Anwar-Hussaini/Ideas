@@ -1,19 +1,19 @@
 <div class="card">
-  <div class="px-3 pt-4 pb-2">
+  <div class="px-3 pb-2 pt-4">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
-        <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-          src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar">
+        <img class="avatar-sm rounded-circle me-2" src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario"
+          alt="Mario Avatar" style="width:50px">
         <div>
           <h5 class="card-title mb-0"><a href="#"> Mario </a></h5>
         </div>
       </div>
       <div class="row">
-        <a href="{{ route("ideas.edit", $idea) }}" class="btn btn-warning btn-sm col me-2">edit</a>
-        <a href="{{ route("ideas.show", $idea) }}" class="btn btn-info btn-sm col">view</a>
-        <form action="{{ route("ideas.destroy", $idea) }}" method="POST" class="col">
+        <a class="btn btn-warning btn-sm col me-2" href="{{ route('ideas.edit', $idea) }}">edit</a>
+        <a class="btn btn-info btn-sm col" href="{{ route('ideas.show', $idea) }}">view</a>
+        <form class="col" action="{{ route('ideas.destroy', $idea) }}" method="POST">
           @csrf
-          @method("delete")
+          @method('delete')
           <button class="btn btn-danger btn-sm ms-auto">X</button>
         </form>
       </div>
@@ -21,17 +21,17 @@
   </div>
   <div class="card-body">
     @if ($editing ?? false)
-      <form action="{{ route("ideas.update", $idea) }}" method="POST">
+      <form action="{{ route('ideas.update', $idea) }}" method="POST">
         @csrf
-        @method("put")
+        @method('put')
         <div class="mb-3">
-          <textarea name="content" class="form-control" id="idea" rows="3">{{ $idea->content }}</textarea>
-          @error("content")
-            <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+          <textarea class="form-control" id="idea" name="content" rows="3">{{ $idea->content }}</textarea>
+          @error('content')
+            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
           @enderror
         </div>
         <div class="">
-          <button type="submit" class="btn btn-dark"> Update </button>
+          <button class="btn btn-dark" type="submit"> Update </button>
         </div>
       </form>
     @else
@@ -41,7 +41,7 @@
     @endif
     <div class="d-flex justify-content-between">
       <div>
-        <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
+        <a class="fw-light nav-link fs-6" href="#"> <span class="fas fa-heart me-1">
           </span> {{ $idea->likes }} </a>
       </div>
       <div>
@@ -49,35 +49,6 @@
           {{ $idea->created_at }} </span>
       </div>
     </div>
-    <div>
-      <div class="mb-3">
-        <textarea class="fs-6 form-control" rows="1"></textarea>
-      </div>
-      <div>
-        <button class="btn btn-primary btn-sm"> Post Comment </button>
-      </div>
-
-      <hr>
-      <div class="d-flex align-items-start">
-        <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-          src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="Luigi Avatar">
-        <div class="w-100">
-          <div class="d-flex justify-content-between">
-            <h6 class="">Luigi
-            </h6>
-            <small class="fs-6 fw-light text-muted"> 3 hour
-              ago</small>
-          </div>
-          <p class="fs-6 mt-3 fw-light">
-            and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-            Evil)
-            by
-            Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-            very
-            popular during the Renaissan
-          </p>
-        </div>
-      </div>
-    </div>
+    @include('partials._comments-box')
   </div>
 </div>
