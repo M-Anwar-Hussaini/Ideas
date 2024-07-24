@@ -13,9 +13,15 @@ class DashboardController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('dashboard', ['ideas' => Idea::orderBy('created_at', 'desc')->paginate(5)]);
+        $ideas = Idea::orderBy('created_at', 'desc');
+        // check if there is a search
+        if ($request->has('search')) {
+            $ideas = $ideas->where('content', 'like', '%' . $request->get('search') . '%');
+        }
+        // If there is check the search value with our database
+        return view('dashboard', ['ideas' => $ideas->paginate(5)]);
     }
 
     /**
