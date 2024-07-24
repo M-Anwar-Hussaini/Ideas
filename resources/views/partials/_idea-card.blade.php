@@ -9,8 +9,9 @@
         </div>
       </div>
       <div class="row">
-        <a href="{{ route("ideas.show", $idea) }}" class="btn btn-info btn-sm col-6">view</a>
-        <form action="{{ route("ideas.destroy", $idea) }}" method="POST" class="col-6">
+        <a href="{{ route("ideas.edit", $idea) }}" class="btn btn-warning btn-sm col me-2">edit</a>
+        <a href="{{ route("ideas.show", $idea) }}" class="btn btn-info btn-sm col">view</a>
+        <form action="{{ route("ideas.destroy", $idea) }}" method="POST" class="col">
           @csrf
           @method("delete")
           <button class="btn btn-danger btn-sm ms-auto">X</button>
@@ -19,9 +20,25 @@
     </div>
   </div>
   <div class="card-body">
-    <p class="fs-6 fw-light text-muted">
-      {{ $idea->content }}
-    </p>
+    @if ($editing ?? false)
+      <form action="{{ route("ideas.update", $idea) }}" method="POST">
+        @csrf
+        @method("put")
+        <div class="mb-3">
+          <textarea name="content" class="form-control" id="idea" rows="3">{{ $idea->content }}</textarea>
+          @error("content")
+            <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+          @enderror
+        </div>
+        <div class="">
+          <button type="submit" class="btn btn-dark"> Update </button>
+        </div>
+      </form>
+    @else
+      <p class="fs-6 fw-light text-muted">
+        {{ $idea->content }}
+      </p>
+    @endif
     <div class="d-flex justify-content-between">
       <div>
         <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
