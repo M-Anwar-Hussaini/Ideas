@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Idea extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'content',
-        'likes'
-    ];
+    // protected $fillable = [
+    //     'content',
+    //     'likes'
+    // ];
+
+    protected $gaurded = ['id', 'created_at', 'updated_at'];
 
     public function comments()
     {
