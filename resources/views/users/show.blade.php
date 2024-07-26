@@ -7,7 +7,9 @@
     <div class="col-6">
       @include('partials._success-message')
       @include('partials._error-message')
-      @include('partials._submit-idea')
+      <div class="mb-3">
+        @include('partials._user-card')
+      </div>
       <hr>
 
       @forelse ($ideas as $idea)
@@ -16,12 +18,13 @@
         </div>
       @empty
         <div class="mt-3 text-center">
-          <p>No result found.</p>
+          <p>No idea found.</p>
         </div>
       @endforelse
       <div class="my-3">
         {{ $ideas->withQueryString()->links() }}
       </div>
+
     </div>
     <div class="col-3">
       @include('partials._search-bar')

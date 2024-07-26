@@ -16,7 +16,7 @@ class Idea extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'idea_id', 'id');
+        return $this->hasMany(Comment::class, 'idea_id', 'id')->latest();
     }
 
     public function user()
