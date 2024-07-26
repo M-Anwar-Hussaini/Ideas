@@ -2,20 +2,25 @@
   <div class="px-3 pb-2 pt-4">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
-        <img class="avatar-sm rounded-circle me-2" src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario"
-          alt="Mario Avatar" style="width:50px">
+        <img class="avatar-sm rounded-circle me-2"
+          src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }}"
+          style="width:50px">
         <div>
-          <h5 class="card-title mb-0"><a href="#"> Mario </a></h5>
+          <h5 class="card-title mb-0"><a href="/"> {{ $idea->user->name }} </a></h5>
         </div>
       </div>
       <div class="row">
-        <a class="btn btn-warning btn-sm col me-2" href="{{ route('ideas.edit', $idea) }}">edit</a>
+        @if (Auth::id() == $idea->user_id)
+          <a class="btn btn-warning btn-sm col me-2" href="{{ route('ideas.edit', $idea) }}">edit</a>
+        @endif
         <a class="btn btn-info btn-sm col" href="{{ route('ideas.show', $idea) }}">view</a>
-        <form class="col" action="{{ route('ideas.destroy', $idea) }}" method="POST">
-          @csrf
-          @method('delete')
-          <button class="btn btn-danger btn-sm ms-auto">X</button>
-        </form>
+        @if (Auth::id() == $idea->user_id)
+          <form class="col" action="{{ route('ideas.destroy', $idea) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button class="btn btn-danger btn-sm ms-auto">X</button>
+          </form>
+        @endif
       </div>
     </div>
   </div>
