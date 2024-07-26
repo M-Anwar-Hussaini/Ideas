@@ -9,14 +9,20 @@
       @include('partials._error-message')
       @include('partials._submit-idea')
       <hr>
-      @foreach ($ideas as $idea)
+
+      @forelse ($ideas as $idea)
         <div class="mt-3">
           @include('partials._idea-card')
         </div>
-      @endforeach
-      <div class="my-3">
-        {{ $ideas->links() }}
-      </div>
+        <div class="my-3">
+          {{ $ideas->withQueryString()->links() }}
+        </div>
+      @empty
+        <div class="mt-3 text-center">
+          <p>No result found.</p>
+        </div>
+      @endforelse
+
     </div>
     <div class="col-3">
       @include('partials._search-bar')
