@@ -13,6 +13,7 @@ Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'sho
 Route::resource('ideas', IdeaController::class)->only(['show']);
 Route::resource('ideas.comments', CommentController::class)->middleware('auth');
 Route::resource('users', UserController::class)->only('show', 'edit', 'update')->middleware('auth');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
