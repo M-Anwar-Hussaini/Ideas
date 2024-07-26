@@ -2,15 +2,11 @@
   <div class="px-3 pb-2 pt-4">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
-        <img class="avatar-sm rounded-circle me-3"
-          src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $user->name }}" alt="Mario Avatar" style="width:150px">
+        <img class="avatar-sm rounded-circle me-3" src="{{ $user->getImageURL() }}" alt="{{ $user->name }}"
+          style="width:150px">
         <div>
-          @if ($editing ?? false)
-            <input class="form-control" id="name" name="name" type="text" value="{{ $user->name }}">
-          @else
-            <h3 class="card-title mb-0"><a href="#"> {{ $user->name }} </a></h3>
-            <span class="fs-6 text-muted">{{ $user->email }}</span>
-          @endif
+          <h3 class="card-title mb-0"><a href="{{ route('users.show', $user) }}"> {{ $user->name }} </a></h3>
+          <span class="fs-6 text-muted">{{ $user->email }}</span>
         </div>
       </div>
       <div class="align-self-start">
@@ -21,18 +17,9 @@
     </div>
     <div class="mt-4 px-2">
       <h5 class="fs-5"> Bio : </h5>
-      @if ($editing ?? false)
-        <div class="fs-6 fw-light">
-          <textarea class="form-control" id="bio" name="bio" rows="7">About</textarea>
-        </div>
-        <button class="btn btn-dark btn-sm" type="submit">Save</button>
-      @else
-        <p class="fs-6 fw-light">
-          This book is a treatise on the theory of ethics, very popular during the
-          Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
-          from a line in section 1.10.32.
-        </p>
-      @endif
+      <p class="fs-6 fw-light">
+        {{ $user->bio }}
+      </p>
       <div class="d-flex justify-content-start">
         <a class="fw-light nav-link fs-6 me-3" href="#"> <span class="fas fa-user me-1">
           </span> 0 Followers </a>

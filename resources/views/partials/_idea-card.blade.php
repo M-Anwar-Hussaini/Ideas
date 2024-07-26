@@ -2,8 +2,7 @@
   <div class="px-3 pb-2 pt-4">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
-        <img class="avatar-sm rounded-circle me-2"
-          src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }}"
+        <img class="avatar-sm rounded-circle me-2" src="{{ $idea->user->getImageURL() }}" alt="{{ $idea->user->name }}"
           style="width:50px">
         <div>
           <h5 class="card-title mb-0"><a href="{{ route('users.show', $idea->user) }}"> {{ $idea->user->name }} </a></h5>

@@ -8,21 +8,7 @@
       @include('partials._success-message')
       @include('partials._error-message')
       <div class="mb-3">
-        @include('partials._user-card')
-        <hr>
-      </div>
-
-      @forelse ($ideas as $idea)
-        <div class="mt-3">
-          @include('partials._idea-card')
-        </div>
-      @empty
-        <div class="mt-3 text-center">
-          <p>No idea found.</p>
-        </div>
-      @endforelse
-      <div class="my-3">
-        {{ $ideas->withQueryString()->links() }}
+        @include('partials._user-edit-card')
       </div>
     </div>
     <div class="col-3">
