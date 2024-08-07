@@ -13,6 +13,8 @@ class Idea extends Model
         'user_id'
     ];
 
+    protected $with = ['user:id,name,image', 'comments'];
+
 
     public function comments()
     {
