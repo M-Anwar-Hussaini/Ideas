@@ -9,17 +9,19 @@
         </div>
       </div>
       <div class="row">
-        @if (Auth::id() == $idea->user_id)
+        @can('ideas.edit', $idea)
           <a class="btn btn-warning btn-sm col me-2" href="{{ route('ideas.edit', $idea) }}">edit</a>
-        @endif
+        @endcan
+
         <a class="btn btn-info btn-sm col" href="{{ route('ideas.show', $idea) }}">view</a>
-        @if (Auth::id() == $idea->user_id)
+        @can('ideas.delete', $idea)
           <form class="col" action="{{ route('ideas.destroy', $idea) }}" method="POST">
             @csrf
             @method('delete')
             <button class="btn btn-danger btn-sm ms-auto">X</button>
           </form>
-        @endif
+        @endcan
+
       </div>
     </div>
   </div>
