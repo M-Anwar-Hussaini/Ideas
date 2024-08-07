@@ -9,6 +9,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
 
 Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])->middleware('auth');
 Route::resource('ideas', IdeaController::class)->only(['show']);
