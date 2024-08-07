@@ -8,13 +8,13 @@
       @include('partials._success-message')
       @include('partials._error-message')
       <div class="mb-3">
-        @include('partials._user-card')
+        @include('users.shared._user-card')
         <hr>
       </div>
 
       @forelse ($ideas as $idea)
         <div class="mt-3">
-          @include('partials._idea-card')
+          @include('ideas.shared._idea-card')
         </div>
       @empty
         <div class="mt-3 text-center">

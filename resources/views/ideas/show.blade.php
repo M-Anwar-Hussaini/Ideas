@@ -8,7 +8,7 @@
       @include('partials._success-message')
       @include('partials._error-message')
       <div class="mb-3">
-        @include('partials._idea-card')
+        @include('ideas.shared._idea-card')
       </div>
     </div>
     <div class="col-3">

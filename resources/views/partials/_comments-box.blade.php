@@ -8,9 +8,8 @@
       <button class="btn btn-primary btn-sm" type="submit"> Post Comment </button>
     </div>
   </form>
-
   <hr>
-  @foreach ($idea->comments as $comment)
+  @forelse ($idea->comments as $comment)
     <div class="d-flex align-items-start">
       <img class="avatar-sm rounded-circle me-2" src="{{ $comment->user->getImageURL() }}" alt="Luigi Avatar"
         style="width:35px">
@@ -24,5 +23,7 @@
         </p>
       </div>
     </div>
-  @endforeach
+  @empty
+    <p class="mt-4 text-center">No comments found.</p>
+  @endforelse
 </div>
