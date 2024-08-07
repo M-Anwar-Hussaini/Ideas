@@ -54,9 +54,9 @@
       @endguest
       <div>
         <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-          {{ $idea->created_at }} </span>
+          {{ $idea->created_at->diffForHumans() }} </span>
       </div>
     </div>
-    @include('partials._comments-box')
+    @include('ideas.shared._comments-box')
   </div>
 </div>
