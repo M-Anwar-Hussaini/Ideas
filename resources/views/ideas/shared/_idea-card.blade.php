@@ -9,12 +9,12 @@
         </div>
       </div>
       <div class="row">
-        @can('ideas.edit', $idea)
+        @can('update', $idea)
           <a class="btn btn-warning btn-sm col me-2" href="{{ route('ideas.edit', $idea) }}">edit</a>
         @endcan
 
         <a class="btn btn-info btn-sm col" href="{{ route('ideas.show', $idea) }}">view</a>
-        @can('ideas.delete', $idea)
+        @can('delete', $idea)
           <form class="col" action="{{ route('ideas.destroy', $idea) }}" method="POST">
             @csrf
             @method('delete')
