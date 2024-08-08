@@ -14,6 +14,7 @@ class Idea extends Model
     ];
 
     protected $with = ['user:id,name,image', 'comments'];
+    protected $withCount = ['likes'];
 
 
     public function comments()

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Idea\IdeaCreateRequest;
 use App\Http\Requests\Idea\IdeaUpdateRequest;
 use App\Models\Idea;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -17,8 +16,6 @@ class IdeaController extends Controller
         $validated['user_id'] = Auth::id();
         Idea::create($validated);
         return redirect()->route('home')->with('success', 'Idea was created successfully');
-
-
     }
 
     public function destroy(Idea $idea)
