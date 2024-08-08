@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+@section('title', 'Idea Details')
 @section('content')
   <div class="row">
     <div class="col-3">
