@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
