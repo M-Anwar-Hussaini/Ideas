@@ -11,6 +11,12 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('lang/{lang}', function ($lang) {
+    Session::put('locale', $lang);
+    App::setLocale(Session::get('locale'));
+    return back();
+})->name('lang');
+
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth', 'can:admin']);
 Route::get('/feed', FeedController::class)->name('feed')->middleware('auth');
