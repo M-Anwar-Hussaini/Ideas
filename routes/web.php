@@ -34,8 +34,10 @@ Route::post('/users/{user}/unfollow', [FollowerController::class, 'unfollow'])->
 Route::post('/ideas/{idea}/like', [LikeController::class, 'like'])->middleware('auth')->name('ideas.like');
 Route::post('/ideas/{idea}/unlike', [LikeController::class, 'unlike'])->middleware('auth')->name('ideas.unlike');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'store']);
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'store']);
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+});
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
