@@ -16,6 +16,11 @@
     </ul>
   </div>
   <div class="card-footer py-2 text-center">
-    <a class="btn btn-link btn-sm" href="{{ route('profile') }}">View Profile </a>
+    <a class="btn {{ Session::get('locale') === 'en' ? 'btn-success' : 'btn-link' }} btn-sm"
+      href="{{ route('lang', 'en') }}">English</a>
+    <a class="btn {{ Session::get('locale') === 'fa' ? 'btn-success' : 'btn-link' }} btn-sm"
+      href="{{ route('lang', 'fa') }}">فارسی</a>
+    <a class="btn {{ Session::get('locale') === 'ps' ? 'btn-success' : 'btn-link' }} btn-sm"
+      href="{{ route('lang', 'ps') }}">پشتو </a>
   </div>
 </div>
