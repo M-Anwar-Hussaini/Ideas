@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,8 +28,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function (User $user): bool {
             return $user->is_admin;
         });
-        View::share('topUsers', User::withCount('ideas')
-            ->orderBy('ideas_count', 'DESC')
-            ->take(5)->get());
+        debugbar()->enable();
+
+        $topUser = Cache::remember('topUsers', now()->addMinutes(5), function () {
+            return User::withCount('ideas')
+                ->orderBy('ideas_count', 'DESC')
+                ->take(5)->get();
+        });
+        View::share('topUsers', $topUser);
     }
 }
