@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,13 +16,17 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        $ideas = Idea::orderBy('created_at', 'desc');
-        // check if there is a search
+        $ideas = Idea::orderBy('created_at', 'desc')->paginate(5);
+
+
         if ($request->has('search')) {
-            $ideas = $ideas->where('content', 'like', '%' . $request->get('search') . '%');
+            $ideas = $ideas->where('content', 'like', '%' . $request->get('search') . '%')->paginate(5);
         }
-        // If there is check the search value with our database
-        return view('dashboard', ['ideas' => $ideas->paginate(5)]);
+
+
+        return view('dashboard', [
+            'ideas' => $ideas
+        ]);
     }
 
     /**
